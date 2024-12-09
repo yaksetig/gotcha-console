@@ -1,32 +1,34 @@
+"use client";
+
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { ApiKey } from "../../types";
 import KeyField from "./KeyField";
 import EditableLabel from "./EditableLabel";
+import { useState } from "react";
+import { revokeApiKey } from "@/lib/server/api-keys";
 
 type ApiKeyCardProps = {
   apiKey: ApiKey;
-  onRevoke: (id: number) => void;
-  onToggleSecret: (id: number) => void;
-  onUpdateLabel: (id: number, newLabel: string) => Promise<void>;
 };
 
-export default function ApiKeyCard({
-  apiKey,
-  onRevoke,
-  onToggleSecret,
-  onUpdateLabel,
-}: ApiKeyCardProps) {
+export default function ApiKeyCard({ apiKey }: ApiKeyCardProps) {
+  const [label, setLabel] = useState("New API key");
+  const [showSecret, setShowSecret] = useState(false);
+
+  async function editLabel(newLabel: string) {
+    setLabel(newLabel);
+  }
+
+  async function revokeKey() {
+    await revokeApiKey(apiKey.siteKey);
+  }
+
   return (
     <div className="bg-white p-4 rounded-lg shadow border">
       <div className="flex justify-between items-center mb-4">
-        <EditableLabel
-          value={apiKey.label}
-          onSubmit={async (newLabel) =>
-            await onUpdateLabel(apiKey.id, newLabel)
-          }
-        />
+        <EditableLabel value={label} onEdit={editLabel} />
         <button
-          onClick={() => onRevoke(apiKey.id)}
+          onClick={revokeKey}
           className="text-red-500 hover:text-red-600 flex items-center"
         >
           <XCircleIcon className="h-5 w-5 mr-1" />
@@ -36,13 +38,7 @@ export default function ApiKeyCard({
 
       <div className="space-y-3">
         <KeyField label="Site Key" value={apiKey.siteKey} />
-        <KeyField
-          label="Secret Key"
-          value={apiKey.secretKey}
-          isSecret
-          showSecret={apiKey.showSecret}
-          onToggleVisibility={() => onToggleSecret(apiKey.id)}
-        />
+        <KeyField label="Secret Key" value={apiKey.secretKey} isSecret />
       </div>
     </div>
   );

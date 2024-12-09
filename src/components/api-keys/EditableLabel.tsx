@@ -2,10 +2,10 @@ import { useState, useRef, useEffect } from "react";
 
 type EditableLabelProps = {
   value: string;
-  onSubmit: (newValue: string) => Promise<void>;
+  onEdit: (newValue: string) => Promise<void>;
 };
 
-export default function EditableLabel({ value, onSubmit }: EditableLabelProps) {
+export default function EditableLabel({ value, onEdit }: EditableLabelProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function EditableLabel({ value, onSubmit }: EditableLabelProps) {
 
     setIsLoading(true);
     try {
-      await onSubmit(inputValue);
+      await onEdit(inputValue);
       setIsEditing(false);
     } catch (error) {
       // Revert to original value on error

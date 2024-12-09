@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import CopyButton from "./CopyButton";
 import VisibilityToggle from "./VisibilityToggle";
 
@@ -5,17 +8,14 @@ type KeyFieldProps = {
   label: string;
   value: string;
   isSecret?: boolean;
-  showSecret?: boolean;
-  onToggleVisibility?: () => void;
 };
 
 export default function KeyField({
   label,
   value,
   isSecret = false,
-  showSecret = true,
-  onToggleVisibility,
 }: KeyFieldProps) {
+  const [showSecret, setShowSecret] = useState(false);
   const displayValue = isSecret && !showSecret ? "•".repeat(20) : value;
 
   return (
@@ -29,9 +29,7 @@ export default function KeyField({
         {isSecret ? (
           <VisibilityToggle
             show={showSecret}
-            onToggle={() => {
-              onToggleVisibility?.();
-            }}
+            onToggle={() => setShowSecret((s) => !s)}
           />
         ) : (
           <div className="w-5" />
