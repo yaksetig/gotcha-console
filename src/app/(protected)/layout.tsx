@@ -1,8 +1,13 @@
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
-import { ApplicationProvider } from "@/contexts/ApplicationContext";
+import dynamic from "next/dynamic";
 
-export default function DashboardLayout({
+const ApplicationProvider = dynamic(
+  () => import("@/contexts/ApplicationContext"),
+  { ssr: false },
+);
+
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;

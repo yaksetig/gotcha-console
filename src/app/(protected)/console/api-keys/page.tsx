@@ -1,8 +1,7 @@
 import ApiKeyCard from "@/components/api-keys/ApiKeyCard";
 import { generateApiKey, getApiKeys } from "@/lib/server/api-keys";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-export default withPageAuthRequired(async function ApiKeysPage() {
+export default async function ApiKeysPage() {
   const apiKeys = await getApiKeys();
 
   return (
@@ -25,4 +24,4 @@ export default withPageAuthRequired(async function ApiKeysPage() {
       </div>
     </>
   );
-});
+}

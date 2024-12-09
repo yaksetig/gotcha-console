@@ -12,7 +12,7 @@ export default function Sidebar() {
           <span className="mr-3">🏠</span>
           Console
         </NavItem>
-        <NavItem href="/api-keys">
+        <NavItem href="/console/api-keys">
           <span className="mr-3">🔐</span>
           API Keys
         </NavItem>

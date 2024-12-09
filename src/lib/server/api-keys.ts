@@ -1,7 +1,7 @@
 "use server";
 
 import { ApiKey } from "@/types";
-import { revalidatePath } from "next/cache";
+import { revalidateTag, unstable_cache } from "next/cache";
 
 let apiKeysStore: ApiKey[] = [
   {
@@ -11,9 +11,13 @@ let apiKeysStore: ApiKey[] = [
   },
 ];
 
-export async function getApiKeys() {
-  return apiKeysStore;
-}
+export const getApiKeys = unstable_cache(
+  async () => {
+    return apiKeysStore;
+  },
+  ["api-keys"],
+  { tags: ["api-keys"] },
+);
 
 export async function generateApiKey() {
   const newKey: ApiKey = {
@@ -24,11 +28,11 @@ export async function generateApiKey() {
 
   apiKeysStore = [...apiKeysStore, newKey];
 
-  revalidatePath("/api-keys");
+  revalidateTag("api-keys");
 }
 
 export async function revokeApiKey(siteKey: string) {
   apiKeysStore = apiKeysStore.filter((k) => k.siteKey !== siteKey);
 
-  revalidatePath("/api-keys");
+  revalidateTag("api-keys");
 }

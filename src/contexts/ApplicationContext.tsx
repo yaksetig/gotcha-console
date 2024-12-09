@@ -20,7 +20,11 @@ const ApplicationContext = createContext<ApplicationContextType | undefined>(
 
 const STORAGE_KEY = "activeApplication";
 
-export function ApplicationProvider({ children }: { children: ReactNode }) {
+export default function ApplicationProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [activeApplication, setActiveApplication] =
     useState<Application | null>(() => {
       const stored = localStorage.getItem(STORAGE_KEY);
