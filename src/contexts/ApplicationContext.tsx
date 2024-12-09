@@ -1,5 +1,6 @@
 "use client";
 
+import { Application } from "@/lib/server/types";
 import {
   createContext,
   useContext,
@@ -7,7 +8,6 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import type { Application } from "@/types";
 
 type ApplicationContextType = {
   activeApplication: Application | null;

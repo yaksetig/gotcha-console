@@ -1,11 +1,11 @@
 "use client";
 
 import { XCircleIcon } from "@heroicons/react/24/outline";
-import { ApiKey } from "../../types";
 import KeyField from "./KeyField";
 import EditableLabel from "./EditableLabel";
 import { useState } from "react";
 import { revokeApiKey } from "@/lib/server/api-keys";
+import { ApiKey } from "@/lib/server/types";
 
 type ApiKeyCardProps = {
   apiKey: ApiKey;

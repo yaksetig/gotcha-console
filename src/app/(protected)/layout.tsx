@@ -1,6 +1,8 @@
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
+import { getApplications } from "@/lib/server/console";
 import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
 
 const ApplicationProvider = dynamic(
   () => import("@/contexts/ApplicationContext"),
@@ -12,6 +14,11 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const apps = await getApplications();
+  if (apps.length === 0) {
+    return redirect("/console");
+  }
+
   return (
     <ApplicationProvider>
       <div className="flex h-screen">

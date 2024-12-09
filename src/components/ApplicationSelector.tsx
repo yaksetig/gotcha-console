@@ -2,18 +2,18 @@
 
 import { useId } from "react";
 import { useActiveApplication } from "@/contexts/ApplicationContext";
-import type { Application } from "@/types";
+import { Application } from "@/lib/server/types";
+import { redirect } from "next/navigation";
 
-const MOCK_APPLICATIONS: Application[] = [
-  { id: 1, name: "Production App" },
-  { id: 2, name: "Development App" },
-];
+type ApplicationSelectorProps = {
+  appsList: Application[];
+};
 
-export function ApplicationSelector() {
+export function ApplicationSelector({ appsList }: ApplicationSelectorProps) {
   const selectId = useId();
   const { activeApplication, setActiveApplication } = useActiveApplication();
 
-  if (MOCK_APPLICATIONS.length === 0) {
+  if (appsList.length === 0) {
     return null;
   }
 
@@ -26,14 +26,14 @@ export function ApplicationSelector() {
         id={selectId}
         value={activeApplication?.id || ""}
         onChange={(e) => {
-          const selected = MOCK_APPLICATIONS.find(
+          const selected = appsList.find(
             (app) => app.id === Number(e.target.value),
           );
           setActiveApplication(selected ?? null);
         }}
         className="appearance-none bg-transparent border border-gray-300 rounded-md py-1.5 pl-3 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
-        {MOCK_APPLICATIONS.map((app) => (
+        {appsList.map((app) => (
           <option key={app.id} value={app.id}>
             {app.name}
           </option>

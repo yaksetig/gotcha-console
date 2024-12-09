@@ -1,13 +1,15 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { ApplicationSelector } from "./ApplicationSelector";
+import { getApplications } from "@/lib/server/console";
 
 export default async function Topbar() {
   const session = await getSession();
+  const apps = await getApplications();
 
   return (
     <header className="px-8 h-16 flex items-center justify-between border-b border-gray-100 flex-shrink-0">
       <div className="text-gray-600">
-        <ApplicationSelector />
+        <ApplicationSelector appsList={apps} />
       </div>
       <div className="flex items-center space-x-4">
         <span className="text-gray-600 hover:text-gray-900">

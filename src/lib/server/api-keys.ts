@@ -1,7 +1,7 @@
 "use server";
 
-import { ApiKey } from "@/types";
 import { revalidateTag, unstable_cache } from "next/cache";
+import { ApiKey } from "./types";
 
 let apiKeysStore: ApiKey[] = [
   {
@@ -25,7 +25,6 @@ export async function generateApiKey() {
     siteKey: `site_key_${Math.random().toString(36).substr(2, 9)}`,
     secretKey: `secret_key_${Math.random().toString(36).substr(2, 9)}`,
   };
-
   apiKeysStore = [...apiKeysStore, newKey];
 
   revalidateTag("api-keys");
