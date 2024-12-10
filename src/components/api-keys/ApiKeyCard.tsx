@@ -2,10 +2,11 @@
 
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import KeyField from "./KeyField";
-import EditableLabel from "./EditableLabel";
+import EditableLabel from "../EditableLabel";
 import { useState } from "react";
 import { revokeApiKey } from "@/lib/server/api-keys";
 import { ApiKey } from "@/lib/server/types";
+import { useActiveApplication } from "@/contexts/ApplicationContext";
 
 type ApiKeyCardProps = {
   apiKey: ApiKey;
@@ -13,14 +14,14 @@ type ApiKeyCardProps = {
 
 export default function ApiKeyCard({ apiKey }: ApiKeyCardProps) {
   const [label, setLabel] = useState("New API key");
-  const [showSecret, setShowSecret] = useState(false);
+  const { activeApplication } = useActiveApplication();
 
   async function editLabel(newLabel: string) {
     setLabel(newLabel);
   }
 
   async function revokeKey() {
-    await revokeApiKey(apiKey.siteKey);
+    await revokeApiKey(activeApplication?.id ?? "", apiKey.id);
   }
 
   return (

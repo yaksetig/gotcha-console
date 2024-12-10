@@ -1,10 +1,10 @@
 export type ApiKey = {
-  id: number;
+  id: string;
   siteKey: string;
   secretKey: string;
 };
 
 export type Application = {
-  id: number;
+  id: string;
   name: string;
 };

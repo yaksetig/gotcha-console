@@ -1,9 +1,8 @@
 "use client";
 
-import { useId } from "react";
+import { useEffect, useId } from "react";
 import { useActiveApplication } from "@/contexts/ApplicationContext";
 import { Application } from "@/lib/server/types";
-import { redirect } from "next/navigation";
 
 type ApplicationSelectorProps = {
   appsList: Application[];
@@ -12,6 +11,18 @@ type ApplicationSelectorProps = {
 export function ApplicationSelector({ appsList }: ApplicationSelectorProps) {
   const selectId = useId();
   const { activeApplication, setActiveApplication } = useActiveApplication();
+
+  useEffect(() => {
+    if (appsList.length === 0) {
+      setActiveApplication(null);
+    }
+    const app = appsList.find((a) => a.id === activeApplication?.id);
+    if (app) {
+      setActiveApplication(app);
+    } else {
+      setActiveApplication(appsList[0]);
+    }
+  }, [appsList]);
 
   if (appsList.length === 0) {
     return null;
@@ -26,9 +37,7 @@ export function ApplicationSelector({ appsList }: ApplicationSelectorProps) {
         id={selectId}
         value={activeApplication?.id || ""}
         onChange={(e) => {
-          const selected = appsList.find(
-            (app) => app.id === Number(e.target.value),
-          );
+          const selected = appsList.find((app) => app.id === e.target.value);
           setActiveApplication(selected ?? null);
         }}
         className="appearance-none bg-transparent border border-gray-300 rounded-md py-1.5 pl-3 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
