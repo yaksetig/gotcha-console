@@ -1,6 +1,6 @@
 let store = new Map<
   string,
-  { name: string; keys: [{ id: string; siteKey: string; secretKey: string }] }
+  { name: string; keys: { id: string; siteKey: string; secretKey: string }[] }
 >();
 store.set("1", {
   name: "Development",
@@ -12,7 +12,7 @@ store.set("1", {
     },
   ],
 });
-store.set(Math.random().toString().substring(0, 9), {
+store.set("2", {
   name: "Production",
   keys: [
     {
@@ -23,10 +23,6 @@ store.set(Math.random().toString().substring(0, 9), {
   ],
 });
 
-export function getApiKeysByApp(appId: string) {
-  return store.get(appId)?.keys;
-}
-
-export function getApp(appId: string) {
-  return store.get(appId);
+export function getStore() {
+  return store;
 }

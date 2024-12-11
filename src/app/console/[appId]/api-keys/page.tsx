@@ -3,12 +3,16 @@ import { generateApiKey, getApiKeys } from "@/lib/server/api-keys";
 
 export const dynamic = "force-dynamic";
 
-export default async function ApiKeysPage() {
-  const apiKeys = await getApiKeys("1");
+export default async function ApiKeysPage({
+  params,
+}: {
+  params: { appId: string };
+}) {
+  const apiKeys = await getApiKeys(params.appId);
 
   async function handleGenKey() {
     "use server";
-    return await generateApiKey("1");
+    return await generateApiKey(params.appId);
   }
 
   return (
@@ -19,7 +23,7 @@ export default async function ApiKeysPage() {
           <input
             type="submit"
             value="Generate New API Key"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+            className="bg-blue-500 hover:bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-md"
           />
         </form>
       </div>

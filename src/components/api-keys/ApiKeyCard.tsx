@@ -6,7 +6,7 @@ import EditableLabel from "../EditableLabel";
 import { useState } from "react";
 import { revokeApiKey } from "@/lib/server/api-keys";
 import { ApiKey } from "@/lib/server/types";
-import { useActiveApplication } from "@/contexts/ApplicationContext";
+import { useParams } from "next/navigation";
 
 type ApiKeyCardProps = {
   apiKey: ApiKey;
@@ -14,20 +14,16 @@ type ApiKeyCardProps = {
 
 export default function ApiKeyCard({ apiKey }: ApiKeyCardProps) {
   const [label, setLabel] = useState("New API key");
-  const { activeApplication } = useActiveApplication();
-
-  async function editLabel(newLabel: string) {
-    setLabel(newLabel);
-  }
+  const appId = useParams().appId as string;
 
   async function revokeKey() {
-    await revokeApiKey(activeApplication?.id ?? "", apiKey.id);
+    await revokeApiKey(appId, apiKey.id);
   }
 
   return (
     <div className="bg-white p-4 rounded-lg shadow border">
       <div className="flex justify-between items-center mb-4">
-        <EditableLabel value={label} onEdit={editLabel} />
+        <EditableLabel value={label} onEdit={async (l) => setLabel(l)} />
         <button
           onClick={revokeKey}
           className="text-red-500 hover:text-red-600 flex items-center"

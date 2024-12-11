@@ -2,11 +2,11 @@
 
 import { revalidateTag, unstable_cache } from "next/cache";
 import { ApiKey } from "./types";
-import { getApiKeysByApp } from "./store";
+import { getStore } from "./store";
 
 export const getApiKeys = unstable_cache(
   async (appId: string) => {
-    return getApiKeysByApp(appId);
+    return getStore().get(appId)?.keys ?? [];
   },
   ["api-keys"],
   { tags: ["api-keys"] },
@@ -18,14 +18,14 @@ export async function generateApiKey(appId: string) {
     siteKey: `site_key_${Math.random().toString(36).substring(2, 9)}`,
     secretKey: `secret_key_${Math.random().toString(36).substring(2, 9)}`,
   };
-  const apiKeysStore = getApiKeysByApp(appId);
+  const apiKeysStore = getStore().get(appId)?.keys;
   apiKeysStore?.push(newKey);
 
   revalidateTag("api-keys");
 }
 
 export async function revokeApiKey(appId: string, keyId: string) {
-  const apiKeysStore = getApiKeysByApp(appId);
+  const apiKeysStore = getStore().get(appId)?.keys;
   if (!apiKeysStore) return;
 
   const idx = apiKeysStore.findIndex((k) => k.id === keyId);

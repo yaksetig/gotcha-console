@@ -2,40 +2,38 @@
 
 import { revalidateTag, unstable_cache } from "next/cache";
 import { Application } from "./types";
-
-let applicationsStore: Application[] = [
-  {
-    id: "1",
-    name: "Development",
-  },
-  {
-    id: "2",
-    name: "Production",
-  },
-];
+import { getStore } from "./store";
 
 export const getApplications = unstable_cache(
   async () => {
-    return applicationsStore;
+    const apps = getStore()
+      .entries()
+      .map((e) => {
+        const app: Application = {
+          id: e[0],
+          name: e[1].name,
+        };
+        return app;
+      })
+      .toArray();
+    return apps;
   },
   ["applications"],
   { tags: ["applications"] },
 );
 
 export async function createApplication(formData: FormData) {
-  const newApp: Application = {
-    id: Math.random().toString(36).substr(2, 9),
+  getStore().set(Math.random().toString(10).substring(2, 9), {
     name: (formData.get("name") as string | undefined) ?? "New Application",
-  };
-  applicationsStore = [...applicationsStore, newApp];
+    keys: [],
+  });
 
   revalidateTag("applications");
 }
 
 export async function deleteApplication(form: FormData) {
   const id: string = (form.get("id") as string | null) ?? "";
-  // The `!==` doesn't work. Joke of a language.
-  applicationsStore = applicationsStore.filter((a) => a.id !== id);
+  getStore().delete(id);
 
   revalidateTag("applications");
 }
@@ -48,7 +46,7 @@ export async function updateApplication(
   id: string,
   updateApp: UpdateApplication,
 ) {
-  const app = applicationsStore.find((a) => a.id === id);
+  const app = getStore().get(id);
   if (!app) return;
 
   if (updateApp.name) {
