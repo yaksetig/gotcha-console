@@ -40,7 +40,7 @@ export function Dropdown({
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="appearance-none bg-transparent border border-gray-300 rounded-md py-1.5 pl-3 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full text-left"
+        className="appearance-none bg-transparent border border-gray-300 rounded-md py-1.5 pl-3 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-44 text-left"
       >
         {value || "Select option"}
       </button>
