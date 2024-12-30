@@ -1,10 +1,12 @@
 import { createApplication, getApplications } from "@/lib/server/console";
 import ApplicationCard from "@/components/console/ApplicationCard";
+import { getAccessToken } from "@auth0/nextjs-auth0";
 
 export const dynamic = "force-dynamic";
 
 export default async function ConsolePage() {
-  const apps = await getApplications();
+  const tokenRes = await getAccessToken();
+  const apps = await getApplications(tokenRes.accessToken!!);
 
   return (
     <>

@@ -17,7 +17,7 @@ export default function ApiKeyCard({ apiKey }: ApiKeyCardProps) {
   const appId = useParams().appId as string;
 
   async function revokeKey() {
-    await revokeApiKey(appId, apiKey.id);
+    await revokeApiKey(appId, apiKey.siteKey);
   }
 
   return (

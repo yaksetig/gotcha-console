@@ -1,14 +1,13 @@
-import { getSession } from "@auth0/nextjs-auth0";
+import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
 import { ApplicationSelector } from "./ApplicationSelector";
 import { getApplications } from "@/lib/server/console";
 
-type TopbarProps = {
-  appId: string;
-};
-
-export default async function Topbar({ appId }: TopbarProps) {
-  const session = await getSession();
-  const appsList = await getApplications();
+export default async function Topbar() {
+  const [tokenRes, session] = await Promise.all([
+    getAccessToken(),
+    getSession(),
+  ]);
+  const appsList = await getApplications(tokenRes.accessToken!!);
 
   return (
     <header className="px-8 h-16 flex items-center justify-between border-b border-gray-100 flex-shrink-0">

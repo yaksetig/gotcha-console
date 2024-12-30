@@ -1,5 +1,6 @@
 import ApiKeyCard from "@/components/api-keys/ApiKeyCard";
 import { generateApiKey, getApiKeys } from "@/lib/server/api-keys";
+import { getAccessToken } from "@auth0/nextjs-auth0";
 
 export const dynamic = "force-dynamic";
 
@@ -8,7 +9,8 @@ export default async function ApiKeysPage({
 }: {
   params: { appId: string };
 }) {
-  const apiKeys = await getApiKeys(params.appId);
+  const accessToken = (await getAccessToken()).accessToken!!;
+  const apiKeys = await getApiKeys(accessToken, params.appId);
 
   async function handleGenKey() {
     "use server";
@@ -29,7 +31,7 @@ export default async function ApiKeysPage({
       </div>
 
       <div className="space-y-4">
-        {apiKeys?.map((key) => <ApiKeyCard key={key.id} apiKey={key} />)}
+        {apiKeys?.map((key) => <ApiKeyCard key={key.siteKey} apiKey={key} />)}
       </div>
     </>
   );
