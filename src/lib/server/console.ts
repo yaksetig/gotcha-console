@@ -64,15 +64,19 @@ type UpdateApplication = {
 };
 
 export async function updateApplication(
-  id: string,
+  consoleId: string,
   updateApp: UpdateApplication,
 ) {
-  // const app = getStore().get(id);
-  // if (!app) return;
-
-  // if (updateApp.name) {
-  //   app.name = updateApp.name;
-  // }
+  await fetch(`http://localhost:8080/api/console/${consoleId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${(await getAccessToken()).accessToken}`,
+    },
+    body: JSON.stringify({
+      label: updateApp.name ?? null,
+    }),
+  });
 
   revalidateTag("applications");
 }

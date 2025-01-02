@@ -1,5 +1,9 @@
 import ApiKeyCard from "@/components/api-keys/ApiKeyCard";
-import { generateApiKey, getApiKeys } from "@/lib/server/api-keys";
+import {
+  generateApiKey,
+  getApiKeys,
+  updateApiKey,
+} from "@/lib/server/api-keys";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +21,11 @@ export default async function ApiKeysPage({
     return await generateApiKey(params.appId);
   }
 
+  async function handleEditKey(siteKey: string, label: string) {
+    "use server";
+    return await updateApiKey(params.appId, siteKey, { name: label });
+  }
+
   return (
     <>
       <div className="flex justify-between items-center mb-6">
@@ -31,7 +40,16 @@ export default async function ApiKeysPage({
       </div>
 
       <div className="space-y-4">
-        {apiKeys?.map((key) => <ApiKeyCard key={key.siteKey} apiKey={key} />)}
+        {apiKeys?.map((key) => (
+          <ApiKeyCard
+            key={key.siteKey}
+            apiKey={key}
+            onEdit={async (l) => {
+              "use server";
+              await handleEditKey(key.siteKey, l);
+            }}
+          />
+        ))}
       </div>
     </>
   );

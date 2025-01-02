@@ -1,6 +1,7 @@
 export type ApiKey = {
   siteKey: string;
   secretKey: string;
+  label: string | null;
 };
 
 export type Application = {

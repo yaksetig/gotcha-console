@@ -6,18 +6,17 @@ import { getAccessToken } from "@auth0/nextjs-auth0";
 
 export const getApiKeys = unstable_cache(
   async (accessToken: string, appId: string): Promise<ApiKey[]> => {
-    const keys: { site_key: string; secret: string }[] = await fetch(
-      `http://localhost:8080/api/console/${appId}/api-key`,
-      {
+    const keys: { site_key: string; secret: string; label: string | null }[] =
+      await fetch(`http://localhost:8080/api/console/${appId}/api-key`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      },
-    ).then((r) => r.json());
+      }).then((r) => r.json());
 
     return keys.map((k) => ({
       siteKey: k.site_key,
       secretKey: k.secret,
+      label: k.label,
     }));
   },
   ["api-keys"],
@@ -30,6 +29,29 @@ export async function generateApiKey(appId: string) {
     headers: {
       Authorization: `Bearer ${(await getAccessToken()).accessToken}`,
     },
+  });
+
+  revalidateTag("api-keys");
+}
+
+type UpdateApiKey = {
+  name?: string;
+};
+
+export async function updateApiKey(
+  appId: string,
+  siteKey: string,
+  update: UpdateApiKey,
+) {
+  await fetch(`http://localhost:8080/api/console/${appId}/api-key/${siteKey}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${(await getAccessToken()).accessToken}`,
+    },
+    body: JSON.stringify({
+      label: update.name ?? null,
+    }),
   });
 
   revalidateTag("api-keys");
