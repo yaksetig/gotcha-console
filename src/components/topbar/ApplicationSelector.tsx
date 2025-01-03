@@ -29,7 +29,7 @@ export function ApplicationSelector({ appsList }: ApplicationSelectorProps) {
     >
       {appsList.map((app) => (
         <DropdownOption key={app.id} value={app.id}>
-          <Link href={generateHref(app.id)} className="block w-full h-full">
+          <Link href={generateHref(app.id)} className="block px-4 py-2">
             {app.name}
           </Link>
         </DropdownOption>

@@ -15,16 +15,20 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-sm bg-white">
-      <div className="p-4 flex items-center justify-between">
+      <div className="px-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}
           onEdit={async (newName) =>
             await updateApplication(app.id, { name: newName })
           }
         />
+        <div
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex-grow self-stretch cursor-pointer"
+        ></div>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-gray-500 hover:text-gray-700"
+          className="my-4 text-gray-500 hover:text-gray-700"
         >
           {isExpanded ? (
             <ChevronUpIcon className="h-5 w-5" />
@@ -37,7 +41,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
       {isExpanded && (
         <div className="border-t border-gray-200 p-4 bg-gray-50">
           <div className="flex justify-end">
-            <form action={deleteApplication}>
+            <form action={deleteApplication.bind(null, app.id)}>
               <input type="hidden" name="id" value={app.id} />
               <button
                 type="submit"

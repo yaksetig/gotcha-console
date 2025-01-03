@@ -79,7 +79,7 @@ export function DropdownOption({
 }: DropdownOptionProps) {
   return (
     <li
-      className={`block px-4 py-2 overflow-x-hidden text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer ${className}`}
+      className={`block overflow-x-hidden text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer ${className}`}
     >
       {children}
     </li>

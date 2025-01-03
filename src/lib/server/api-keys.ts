@@ -3,11 +3,12 @@
 import { revalidateTag, unstable_cache } from "next/cache";
 import { ApiKey } from "./types";
 import { getAccessToken } from "@auth0/nextjs-auth0";
+import env from "./env";
 
 export const getApiKeys = unstable_cache(
   async (accessToken: string, appId: string): Promise<ApiKey[]> => {
     const keys: { site_key: string; secret: string; label: string | null }[] =
-      await fetch(`http://localhost:8080/api/console/${appId}/api-key`, {
+      await fetch(`${env.GOTCHA_ORIGIN}/api/console/${appId}/api-key`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -24,7 +25,7 @@ export const getApiKeys = unstable_cache(
 );
 
 export async function generateApiKey(appId: string) {
-  await fetch(`http://localhost:8080/api/console/${appId}/api-key`, {
+  await fetch(`${env.GOTCHA_ORIGIN}/api/console/${appId}/api-key`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${(await getAccessToken()).accessToken}`,
@@ -43,7 +44,7 @@ export async function updateApiKey(
   siteKey: string,
   update: UpdateApiKey,
 ) {
-  await fetch(`http://localhost:8080/api/console/${appId}/api-key/${siteKey}`, {
+  await fetch(`${env.GOTCHA_ORIGIN}/api/console/${appId}/api-key/${siteKey}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -58,7 +59,7 @@ export async function updateApiKey(
 }
 
 export async function revokeApiKey(appId: string, siteKey: string) {
-  await fetch(`http://localhost:8080/api/console/${appId}/api-key/${siteKey}`, {
+  await fetch(`${env.GOTCHA_ORIGIN}/api/console/${appId}/api-key/${siteKey}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${(await getAccessToken()).accessToken}`,

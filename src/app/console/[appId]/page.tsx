@@ -8,11 +8,16 @@ export default async function ConsolePage() {
   const tokenRes = await getAccessToken();
   const apps = await getApplications(tokenRes.accessToken!!);
 
+  async function handleSubmit(form: FormData) {
+    "use server";
+    await createApplication((form.get("name") as string | null) ?? undefined);
+  }
+
   return (
     <>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Applications</h2>
-        <form action={createApplication}>
+        <form action={handleSubmit}>
           <input
             type="submit"
             value="New Application"

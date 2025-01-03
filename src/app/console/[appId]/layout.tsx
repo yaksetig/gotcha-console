@@ -2,13 +2,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import Topbar from "@/components/topbar/Topbar";
 import { getApplications } from "@/lib/server/console";
 import { getAccessToken } from "@auth0/nextjs-auth0";
-import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
-
-const ApplicationProvider = dynamic(
-  () => import("@/contexts/ApplicationContext"),
-  { ssr: false },
-);
 
 export default async function DashboardLayout({
   children,
