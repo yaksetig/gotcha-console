@@ -6,7 +6,9 @@ export const dynamic = "force-dynamic";
 
 export default async function ConsolePage() {
   const tokenRes = await getAccessToken();
+  console.log(tokenRes);
   const apps = await getApplications(tokenRes.accessToken!!);
+  console.log(apps);
 
   async function handleSubmit(form: FormData) {
     "use server";
