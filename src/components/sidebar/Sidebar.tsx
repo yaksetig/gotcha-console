@@ -20,6 +20,10 @@ export default function Sidebar({ appId }: SidebarProps) {
           <span className="mr-3">🔐</span>
           API Keys
         </NavItem>
+        <NavItem href={`/console/${appId ?? ""}/challenge-preferences`}>
+          <span className="mr-3">🧩</span>
+          Challenge preferences
+        </NavItem>
       </NavList>
     </aside>
   );
