@@ -1,6 +1,7 @@
 import { createApplication, getApplications } from "@/lib/server/console";
 import ApplicationCard from "@/components/console/ApplicationCard";
 import { getAccessToken } from "@auth0/nextjs-auth0";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 export const dynamic = "force-dynamic";
 
@@ -18,11 +19,13 @@ export default async function ConsolePage() {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Applications</h2>
         <form action={handleSubmit}>
-          <input
+          <button
             type="submit"
-            value="New Application"
-            className="bg-blue-500 hover:bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-md"
-          />
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center"
+          >
+            <PlusIcon className="h-5 w-5 mr-2" />
+            New Application
+          </button>
         </form>
       </div>
 

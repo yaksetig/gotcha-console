@@ -15,9 +15,10 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-sm bg-white">
-      <div className="px-4 flex items-center justify-between">
+      <div className="px-4 py-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}
+          autoEdit={!app.name || app.name === "New Application"}
           onEdit={async (newName) =>
             await updateApplication(app.id, { name: newName })
           }

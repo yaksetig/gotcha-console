@@ -3,10 +3,15 @@ import { useState, useRef, useEffect } from "react";
 type EditableLabelProps = {
   value: string;
   onEdit: (newValue: string) => Promise<void>;
+  autoEdit?: boolean;
 };
 
-export default function EditableLabel({ value, onEdit }: EditableLabelProps) {
-  const [isEditing, setIsEditing] = useState(false);
+export default function EditableLabel({
+  value,
+  onEdit,
+  autoEdit = false,
+}: EditableLabelProps) {
+  const [isEditing, setIsEditing] = useState(autoEdit);
   const [inputValue, setInputValue] = useState(value);
   const [isLoading, setIsLoading] = useState(false);
   const [originalValue] = useState(value);
@@ -71,7 +76,7 @@ export default function EditableLabel({ value, onEdit }: EditableLabelProps) {
   return (
     <h3
       onClick={() => setIsEditing(true)}
-      className="font-medium text-gray-700 border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5"
+      className="font-semibold text-gray-700 text-lg border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5"
     >
       {inputValue}
     </h3>
