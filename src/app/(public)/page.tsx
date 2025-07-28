@@ -20,7 +20,7 @@ export default async function Home() {
                 href="/console"
                 className="px-6 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
               >
-                Go to Console
+                Continue
               </a>
               <a
                 href="/api/auth/logout"
