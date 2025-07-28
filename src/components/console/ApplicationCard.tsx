@@ -13,7 +13,7 @@ type ApplicationCardProps = {
 export default function ApplicationCard({ app }: ApplicationCardProps) {
 
   return (
-    <div className="border border-gray-200 rounded-xl shadow bg-white transition-shadow hover:shadow-md">
+    <div className="border border-gray-700 rounded-xl shadow bg-background transition-shadow hover:shadow-md">
       <div className="px-6 py-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}

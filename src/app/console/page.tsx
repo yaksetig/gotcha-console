@@ -17,11 +17,11 @@ export default async function WelcomeConsolePage() {
           <RocketLaunchIcon className="h-16 w-16 text-blue-500 mx-auto" />
         </div>
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-gray-100 mb-4">
           Welcome to Gotcha Console!
         </h1>
 
-        <p className="text-lg text-gray-600 mb-8">
+        <p className="text-lg text-gray-400 mb-8">
           Get started by creating your first application. You'll be able to
           manage your API keys, monitor usage, and configure your integration
           all in one place.
@@ -37,7 +37,7 @@ export default async function WelcomeConsolePage() {
           </button>
         </form>
 
-        <div className="mt-12 text-sm text-gray-500">
+        <div className="mt-12 text-sm text-gray-400">
           <p>
             Need help getting started?{" "}
             <a
