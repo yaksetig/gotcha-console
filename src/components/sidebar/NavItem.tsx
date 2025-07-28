@@ -10,7 +10,7 @@ export default function NavItem({ href, children }: NavItemProps) {
   return (
     <Link
       href={href}
-      className="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+      className="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white"
     >
       {children}
     </Link>

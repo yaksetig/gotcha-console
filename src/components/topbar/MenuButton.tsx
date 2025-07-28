@@ -8,7 +8,7 @@ export default function MenuButton() {
   return (
     <button
       onClick={toggle}
-      className="md:hidden text-gray-600 hover:text-gray-900 mr-2"
+      className="md:hidden text-gray-300 hover:text-white mr-2"
     >
       <Bars3Icon className="h-6 w-6" />
     </button>

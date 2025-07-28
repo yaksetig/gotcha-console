@@ -20,7 +20,7 @@ export default function ApiKeyCard({ apiKey, onEdit }: ApiKeyCardProps) {
   }
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow border">
+    <div className="bg-background p-4 rounded-lg shadow border border-gray-700">
       <div className="flex justify-between items-center mb-4">
         <EditableLabel
           value={apiKey.label ?? "New API key"}
