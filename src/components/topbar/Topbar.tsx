@@ -1,6 +1,7 @@
 import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
 import { ApplicationSelector } from "./ApplicationSelector";
 import { getApplications } from "@/lib/server/console";
+import MenuButton from "./MenuButton";
 
 export default async function Topbar() {
   const [tokenRes, session] = await Promise.all([
@@ -10,8 +11,9 @@ export default async function Topbar() {
   const appsList = await getApplications(tokenRes.accessToken!!);
 
   return (
-    <header className="px-8 h-16 flex items-center justify-between border-b border-gray-100 flex-shrink-0">
-      <div className="text-gray-600">
+    <header className="px-4 h-16 flex items-center justify-between border-b border-gray-100 flex-shrink-0">
+      <div className="flex items-center text-gray-600">
+        <MenuButton />
         <ApplicationSelector appsList={appsList} />
       </div>
       <div className="flex items-center space-x-4">
