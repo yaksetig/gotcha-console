@@ -19,7 +19,6 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
       <div className="px-6 py-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}
-          autoEdit={!app.name || app.name === "New Application"}
           onEdit={async (newName) =>
             await updateApplication(app.id, { name: newName })
           }
