@@ -16,12 +16,15 @@ export default async function ConsolePage() {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Applications</h2>
-        <form action={handleSubmit}>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900">Your Applications</h2>
+          <p className="text-gray-600">Manage and create applications for your integration</p>
+        </div>
+        <form action={handleSubmit} className="mt-4 sm:mt-0">
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow flex items-center"
           >
             <PlusIcon className="h-5 w-5 mr-2" />
             New Application
@@ -29,7 +32,7 @@ export default async function ConsolePage() {
         </form>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {apps.map((app) => (
           <ApplicationCard key={app.id} app={app} />
         ))}
