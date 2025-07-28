@@ -19,6 +19,7 @@ export default function NavItem({ href, children }: NavItemProps) {
   return (
     <Link
       href={href}
+
       className={`flex items-center px-6 py-3 ${
         isActive
           ? "bg-gray-100 text-gray-900"
