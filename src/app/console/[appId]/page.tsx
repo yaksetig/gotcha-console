@@ -18,8 +18,8 @@ export default async function ConsolePage() {
     <>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900">Your Applications</h2>
-          <p className="text-gray-600">Manage and create applications for your integration</p>
+          <h2 className="text-3xl font-bold text-gray-100">Your Applications</h2>
+          <p className="text-gray-400">Manage and create applications for your integration</p>
         </div>
         <form action={handleSubmit} className="mt-4 sm:mt-0">
           <button
@@ -34,7 +34,7 @@ export default async function ConsolePage() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {apps.length === 0 ? (
-          <p className="text-gray-600">No applications yet.</p>
+          <p className="text-gray-400">No applications yet.</p>
         ) : (
           apps.map((app) => (
             <ApplicationCard key={app.id} app={app} />

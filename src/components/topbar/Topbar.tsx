@@ -11,18 +11,18 @@ export default async function Topbar() {
   const appsList = await getApplications(tokenRes.accessToken!!);
 
   return (
-    <header className="px-4 h-16 flex items-center justify-between border-b border-gray-100 flex-shrink-0">
-      <div className="flex items-center text-gray-600">
+    <header className="px-4 h-16 flex items-center justify-between border-b border-gray-700 flex-shrink-0">
+      <div className="flex items-center text-gray-300">
         <MenuButton />
         <ApplicationSelector appsList={appsList} />
       </div>
       <div className="flex items-center space-x-4">
-        <span className="text-gray-600 hover:text-gray-900">
+        <span className="text-gray-300 hover:text-white">
           {session?.user?.name}
         </span>
         <a
           href="/api/auth/logout"
-          className="text-gray-600 hover:text-gray-900"
+          className="text-gray-300 hover:text-white"
         >
           Logout
         </a>
