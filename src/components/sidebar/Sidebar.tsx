@@ -22,7 +22,7 @@ export default function Sidebar({ appId }: SidebarProps) {
       <NavList>
         <NavItem href={`/console/${appId ?? ""}`}>
           <span className="mr-3">🏠</span>
-          Console
+          Applications
         </NavItem>
         <NavItem href={`/console/${appId ?? ""}/api-keys`}>
           <span className="mr-3">🔐</span>
