@@ -29,7 +29,7 @@ export default async function ApiKeysPage({
   return (
     <>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">API Keys</h2>
+        <h2 className="text-2xl font-bold text-gray-100">API Keys</h2>
         <form action={handleGenKey}>
           <input
             type="submit"
@@ -41,7 +41,7 @@ export default async function ApiKeysPage({
 
       <div className="space-y-4">
         {apiKeys.length === 0 ? (
-          <p className="text-gray-600">No API keys yet.</p>
+          <p className="text-gray-400">No API keys yet.</p>
         ) : (
           apiKeys.map((key) => (
             <ApiKeyCard

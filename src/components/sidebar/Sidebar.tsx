@@ -14,11 +14,10 @@ export default function Sidebar({ appId }: SidebarProps) {
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-900 shadow-lg flex-shrink-0 transform transition-transform md:relative md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+      className={`fixed inset-y-0 left-0 z-40 w-64 bg-background shadow-lg flex-shrink-0 transform transition-transform md:relative md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
     >
-      <div className="p-6 text-center">
-        <Image src="/logo.svg" alt="Gotcha logo" width={120} height={120} className="mx-auto mb-2" />
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Gotcha console</h1>
+      <div className="p-6">
+        <img src="https://gotcha.land/HL_2.png" alt="Gotcha logo" className="h-8" />
       </div>
       <NavList>
         <NavItem href={`/console/${appId ?? ""}`}>
