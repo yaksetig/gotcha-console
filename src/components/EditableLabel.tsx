@@ -1,15 +1,18 @@
 import { useState, useRef, useEffect } from "react";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 
 type EditableLabelProps = {
   value: string;
   onEdit: (newValue: string) => Promise<void>;
   autoEdit?: boolean;
+  showEditIcon?: boolean;
 };
 
 export default function EditableLabel({
   value,
   onEdit,
   autoEdit = false,
+  showEditIcon = false,
 }: EditableLabelProps) {
   const [isEditing, setIsEditing] = useState(autoEdit);
   const [inputValue, setInputValue] = useState(value);
@@ -74,11 +77,23 @@ export default function EditableLabel({
   }
 
   return (
-    <h3
-      onClick={() => setIsEditing(true)}
-      className="font-semibold text-gray-800 text-xl border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5 transition-colors"
-    >
-      {inputValue}
-    </h3>
+    <div className="flex items-center">
+      <h3
+        onClick={() => setIsEditing(true)}
+        className="font-semibold text-gray-800 text-xl border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5 transition-colors"
+      >
+        {inputValue}
+      </h3>
+      {showEditIcon && (
+        <button
+          type="button"
+          onClick={() => setIsEditing(true)}
+          className="ml-1 text-gray-500 hover:text-gray-700"
+          aria-label="Edit label"
+        >
+          <PencilSquareIcon className="h-4 w-4" />
+        </button>
+      )}
+    </div>
   );
 }

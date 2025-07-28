@@ -23,6 +23,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
           onEdit={async (newName) =>
             await updateApplication(app.id, { name: newName })
           }
+          showEditIcon
         />
         <div className="flex-grow" onClick={() => setIsExpanded(!isExpanded)}></div>
         <button
