@@ -11,6 +11,7 @@ type ApplicationCardProps = {
 };
 
 export default function ApplicationCard({ app }: ApplicationCardProps) {
+
   return (
     <div className="border border-gray-700 rounded-xl shadow bg-background transition-shadow hover:shadow-md">
       <div className="px-6 py-4 flex items-center justify-between">
@@ -22,6 +23,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
         <div className="flex-grow"></div>
       </div>
       <div className="border-t border-gray-700 px-6 py-4 bg-gray-800 flex items-center justify-between">
+
         <Link
           href={`/console/${app.id}/api-keys`}
           className="text-sm text-blue-600 hover:text-blue-800 font-medium"
