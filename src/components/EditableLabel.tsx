@@ -76,7 +76,7 @@ export default function EditableLabel({
   return (
     <h3
       onClick={() => setIsEditing(true)}
-      className="font-semibold text-gray-700 text-lg border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5"
+      className="font-semibold text-gray-800 text-xl border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5 transition-colors"
     >
       {inputValue}
     </h3>
