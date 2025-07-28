@@ -33,9 +33,13 @@ export default async function ConsolePage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {apps.map((app) => (
-          <ApplicationCard key={app.id} app={app} />
-        ))}
+        {apps.length === 0 ? (
+          <p className="text-gray-600">No applications yet.</p>
+        ) : (
+          apps.map((app) => (
+            <ApplicationCard key={app.id} app={app} />
+          ))
+        )}
       </div>
     </>
   );

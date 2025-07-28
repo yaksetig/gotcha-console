@@ -40,16 +40,20 @@ export default async function ApiKeysPage({
       </div>
 
       <div className="space-y-4">
-        {apiKeys?.map((key) => (
-          <ApiKeyCard
-            key={key.siteKey}
-            apiKey={key}
-            onEdit={async (l) => {
-              "use server";
-              await handleEditKey(key.siteKey, l);
-            }}
-          />
-        ))}
+        {apiKeys.length === 0 ? (
+          <p className="text-gray-600">No API keys yet.</p>
+        ) : (
+          apiKeys.map((key) => (
+            <ApiKeyCard
+              key={key.siteKey}
+              apiKey={key}
+              onEdit={async (l) => {
+                "use server";
+                await handleEditKey(key.siteKey, l);
+              }}
+            />
+          ))
+        )}
       </div>
     </>
   );
