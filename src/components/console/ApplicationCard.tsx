@@ -15,7 +15,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="border border-gray-200 rounded-xl shadow bg-white transition-shadow hover:shadow-md">
+    <div className="border border-gray-200 dark:border-gray-700 rounded-xl shadow bg-white dark:bg-gray-800 transition-shadow hover:shadow-md">
       <div className="px-6 py-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}
@@ -36,7 +36,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
       </div>
 
       {isExpanded && (
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-between">
+        <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 flex items-center justify-between">
           <Link
             href={`/console/${app.id}/api-keys`}
             className="text-sm text-blue-600 hover:text-blue-800 font-medium"

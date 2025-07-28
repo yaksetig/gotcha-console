@@ -32,9 +32,9 @@ export default function ChallengePreferencesCard({
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow border">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-semibold text-gray-800">
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
           Challenge Display Settings
         </h3>
         {!isEditing ? (

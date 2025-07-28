@@ -11,8 +11,8 @@ export default function ProfileClient() {
   return (
     user && (
       <div className="space-y-1">
-        <p className="text-gray-700">You're logged in as:</p>
-        <p className="font-semibold text-gray-900">{user.email}</p>
+        <p className="text-gray-700 dark:text-gray-300">You're logged in as:</p>
+        <p className="font-semibold text-gray-900 dark:text-gray-100">{user.email}</p>
       </div>
     )
   );

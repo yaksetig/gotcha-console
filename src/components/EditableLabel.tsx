@@ -67,7 +67,7 @@ export default function EditableLabel({
         onBlur={handleSubmit}
         disabled={isLoading}
         className={`
-          font-medium text-gray-700 px-1 py-0.5 border rounded
+          font-medium text-gray-700 dark:text-gray-300 px-1 py-0.5 border rounded
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
           disabled:bg-gray-100 disabled:cursor-not-allowed
           w-full max-w-[200px]
@@ -80,7 +80,7 @@ export default function EditableLabel({
     <div className="flex items-center">
       <h3
         onClick={() => setIsEditing(true)}
-        className="font-semibold text-gray-800 text-xl border border-transparent cursor-pointer hover:text-gray-900 px-1 py-0.5 transition-colors"
+        className="font-semibold text-gray-800 dark:text-gray-100 text-xl border border-transparent cursor-pointer hover:text-gray-900 dark:hover:text-gray-100 px-1 py-0.5 transition-colors"
       >
         {inputValue}
       </h3>
@@ -88,7 +88,7 @@ export default function EditableLabel({
         <button
           type="button"
           onClick={() => setIsEditing(true)}
-          className="ml-1 text-gray-500 hover:text-gray-700"
+          className="ml-1 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
           aria-label="Edit label"
         >
           <PencilSquareIcon className="h-4 w-4" />
