@@ -19,11 +19,10 @@ export default function NavItem({ href, children }: NavItemProps) {
   return (
     <Link
       href={href}
-
-      className={`flex items-center px-6 py-3 ${
+      className={`flex items-center px-6 py-3 rounded-md transition-colors ${
         isActive
-          ? "bg-gray-100 text-gray-900"
-          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+          ? "bg-gray-700 text-white"
+          : "text-gray-300 hover:bg-gray-600 hover:text-white"
       }`}
     >
       {children}
