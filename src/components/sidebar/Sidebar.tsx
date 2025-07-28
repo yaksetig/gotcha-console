@@ -3,6 +3,7 @@
 import NavList from "./NavList";
 import NavItem from "./NavItem";
 import { useSidebar } from "./SidebarContext";
+import Image from "next/image";
 
 type SidebarProps = {
   appId?: string;
