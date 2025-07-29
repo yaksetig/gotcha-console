@@ -8,6 +8,8 @@ export default async function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-16">
       <main className="text-center space-y-6">
+        
+        <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome to </h1>
         <Image
           src="https://gotcha.land/HL_2.png"
           alt="Gotcha logo"
@@ -15,7 +17,7 @@ export default async function Home() {
           height={192}
           className="mx-auto"
         />
-        <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome</h1>
+        
         <p className="text-lg text-gray-600 dark:text-gray-300">
           Let's secure your application with fun and secure CAPTCHAs!
         </p>
