@@ -23,11 +23,9 @@ export default async function DashboardLayout({
       <div className="flex h-screen">
         <Sidebar appId={params.appId} />
 
-        <div className="flex-1 p-2">
-          <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-sm h-[calc(100vh-1rem)] flex flex-col">
-            <Topbar />
-            <main className="flex-1 overflow-auto p-8 shadow-md">{children}</main>
-          </div>
+        <div className="flex-1 flex flex-col bg-white dark:bg-background">
+          <Topbar />
+          <main className="flex-1 overflow-auto p-8">{children}</main>
         </div>
       </div>
     </SidebarProvider>
