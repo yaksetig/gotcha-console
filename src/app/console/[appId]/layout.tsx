@@ -23,7 +23,7 @@ export default async function DashboardLayout({
       <div className="flex h-screen">
         <Sidebar appId={params.appId} />
 
-        <div className="flex-1 flex flex-col bg-white dark:bg-background">
+        <div className="flex-1 flex flex-col bg-background">
           <Topbar />
           <main className="flex-1 overflow-auto p-8">{children}</main>
         </div>
