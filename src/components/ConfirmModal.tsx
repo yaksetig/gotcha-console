@@ -7,12 +7,14 @@ export default function ConfirmModal({
   children,
   onConfirm,
   onCancel,
+  confirmText = "Delete",
 }: {
   open: boolean;
   title: string;
   children?: ReactNode;
   onConfirm: () => void;
   onCancel: () => void;
+  confirmText?: string;
 }) {
   if (!open) return null;
   return (
@@ -31,7 +33,7 @@ export default function ConfirmModal({
             onClick={onConfirm}
             className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md text-white"
           >
-            Delete
+            {confirmText}
           </button>
         </div>
       </div>

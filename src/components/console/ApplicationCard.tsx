@@ -16,7 +16,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
   const formRef = useRef<HTMLFormElement | null>(null);
 
   return (
-    <div className="rounded-xl shadow-sm bg-gray-800 transition-shadow hover:shadow">
+    <div className="rounded-xl overflow-hidden shadow-sm bg-gray-800 transition-shadow hover:shadow">
       <div className="px-6 py-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}
@@ -50,7 +50,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
             formRef.current?.requestSubmit();
           }}
         >
-          Are you sure you want to delete this application?
+          {`Are you sure you want to delete the application "${app.name}"?`}
         </ConfirmModal>
       </div>
     </div>
