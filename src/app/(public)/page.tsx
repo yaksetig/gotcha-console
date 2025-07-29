@@ -1,5 +1,5 @@
 import { getSession } from "@auth0/nextjs-auth0";
-import { RocketLaunchIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import ProfileClient from "@/components/ProfileClient";
 
 export default async function Home() {
@@ -8,7 +8,13 @@ export default async function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-16">
       <main className="text-center space-y-6">
-        <RocketLaunchIcon className="h-16 w-16 text-blue-500 mx-auto" />
+        <Image
+          src="/logo.svg"
+          alt="Gotcha logo"
+          width={64}
+          height={64}
+          className="mx-auto"
+        />
         <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome to Gotcha</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300">
           Secure your applications with challenge-based authentication.
