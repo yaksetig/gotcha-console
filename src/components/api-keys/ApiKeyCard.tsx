@@ -5,15 +5,14 @@ import KeyField from "./KeyField";
 import EditableLabel from "../EditableLabel";
 import { revokeApiKey } from "@/lib/server/api-keys";
 import { ApiKey } from "@/lib/server/types";
-import { useParams } from "next/navigation";
 
 type ApiKeyCardProps = {
   apiKey: ApiKey;
   onEdit?: (label: string) => Promise<void>;
+  appId: string;
 };
 
-export default function ApiKeyCard({ apiKey, onEdit }: ApiKeyCardProps) {
-  const appId = useParams().appId as string;
+export default function ApiKeyCard({ apiKey, onEdit, appId }: ApiKeyCardProps) {
 
   async function revokeKey() {
     await revokeApiKey(appId, apiKey.siteKey);
