@@ -50,7 +50,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
             formRef.current?.requestSubmit();
           }}
         >
-          Are you sure you want to delete this application?
+          {`Are you sure you want to delete the application "${app.name}"?`}
         </ConfirmModal>
       </div>
     </div>
