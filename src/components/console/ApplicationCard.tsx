@@ -1,16 +1,19 @@
 "use client";
 
-import { FormEvent } from "react";
+import { useState, useRef } from "react";
 import EditableLabel from "../EditableLabel";
 import Link from "next/link";
 import { deleteApplication, updateApplication } from "@/lib/server/console";
 import { Application } from "@/lib/server/types";
+import ConfirmModal from "../ConfirmModal";
 
 type ApplicationCardProps = {
   app: Application;
 };
 
 export default function ApplicationCard({ app }: ApplicationCardProps) {
+  const [open, setOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   return (
     <div className="rounded-xl shadow-sm bg-gray-800 transition-shadow hover:shadow">
@@ -30,22 +33,25 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
         >
           Manage API Keys
         </Link>
-        <form
-          onSubmit={(e: FormEvent<HTMLFormElement>) => {
-            if (!confirm("Are you sure you want to delete this application?")) {
-              e.preventDefault();
-            }
-          }}
-          action={deleteApplication.bind(null, app.id)}
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="text-sm text-red-600 hover:text-red-700 font-medium"
         >
-          <input type="hidden" name="id" value={app.id} />
-          <button
-            type="submit"
-            className="text-sm text-red-600 hover:text-red-700 font-medium"
-          >
-            Delete Application
-          </button>
-        </form>
+          Delete Application
+        </button>
+        <form ref={formRef} action={deleteApplication.bind(null, app.id)} />
+        <ConfirmModal
+          open={open}
+          title="Delete Application"
+          onCancel={() => setOpen(false)}
+          onConfirm={() => {
+            setOpen(false);
+            formRef.current?.requestSubmit();
+          }}
+        >
+          Are you sure you want to delete this application?
+        </ConfirmModal>
       </div>
     </div>
   );

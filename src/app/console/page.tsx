@@ -1,6 +1,7 @@
 import { getApplications, createApplication } from "@/lib/server/console";
 import { redirect } from "next/navigation";
-import { RocketLaunchIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 
 export default async function WelcomeConsolePage() {
@@ -11,10 +12,16 @@ export default async function WelcomeConsolePage() {
   }
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4">
+    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 bg-background text-foreground">
       <div className="text-center max-w-2xl mx-auto">
         <div className="mb-8">
-          <RocketLaunchIcon className="h-16 w-16 text-blue-500 mx-auto" />
+          <Image
+            src="/logo.svg"
+            alt="Gotcha logo"
+            width={64}
+            height={64}
+            className="mx-auto"
+          />
         </div>
 
         <h1 className="text-4xl font-bold text-gray-100 mb-4">
