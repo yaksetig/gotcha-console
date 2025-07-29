@@ -15,9 +15,9 @@ export default async function Home() {
           height={192}
           className="mx-auto"
         />
-        <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome to Gotcha</h1>
+        <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome!</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300">
-          Secure your applications with challenge-based authentication.
+          Let's secure your application with fun and secure CAPTCHAs
         </p>
         <div className="flex justify-center gap-4">
           {session ? (
