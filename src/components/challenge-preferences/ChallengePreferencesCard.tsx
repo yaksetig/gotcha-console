@@ -32,7 +32,7 @@ export default function ChallengePreferencesCard({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700/60">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-sm">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
           Challenge Display Settings
@@ -66,7 +66,7 @@ export default function ChallengePreferencesCard({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Desktop Dimensions */}
         <div className="space-y-4">
-          <h4 className="font-medium text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700/60 pb-2">
+          <h4 className="font-medium text-gray-200 pb-2">
             Desktop Dimensions
           </h4>
           <div className="space-y-3">
@@ -123,7 +123,7 @@ export default function ChallengePreferencesCard({
 
         {/* Mobile Dimensions */}
         <div className="space-y-4">
-          <h4 className="font-medium text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700/60 pb-2">
+          <h4 className="font-medium text-gray-200 pb-2">
             Mobile Dimensions
           </h4>
           <div className="space-y-3">
@@ -180,7 +180,7 @@ export default function ChallengePreferencesCard({
 
         {/* Logo URL - spans full width */}
         <div className="md:col-span-2 space-y-4">
-          <h4 className="font-medium text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700/60 pb-2">Branding</h4>
+          <h4 className="font-medium text-gray-200 pb-2">Branding</h4>
           <div>
             <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
               Logo URL

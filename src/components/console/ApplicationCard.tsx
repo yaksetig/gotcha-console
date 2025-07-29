@@ -13,7 +13,7 @@ type ApplicationCardProps = {
 export default function ApplicationCard({ app }: ApplicationCardProps) {
 
   return (
-    <div className="border border-gray-200 dark:border-gray-700/60 rounded-xl shadow-sm bg-white dark:bg-gray-800 transition-shadow hover:shadow">
+    <div className="rounded-xl shadow-sm bg-gray-800 transition-shadow hover:shadow">
       <div className="px-6 py-4 flex items-center justify-between">
         <EditableLabel
           value={app.name ?? "New Application"}
@@ -22,7 +22,7 @@ export default function ApplicationCard({ app }: ApplicationCardProps) {
         />
         <div className="flex-grow"></div>
       </div>
-      <div className="border-t border-gray-700/60 px-6 py-4 bg-gray-800 flex items-center justify-between">
+      <div className="px-6 py-4 bg-gray-800 flex items-center justify-between">
 
         <Link
           href={`/console/${app.id}/api-keys`}
