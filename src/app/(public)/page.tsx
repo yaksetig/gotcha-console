@@ -11,8 +11,8 @@ export default async function Home() {
         <Image
           src="https://gotcha.land/HL_2.png"
           alt="Gotcha logo"
-          width={64}
-          height={64}
+          width={192}
+          height={192}
           className="mx-auto"
         />
         <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome to Gotcha</h1>
