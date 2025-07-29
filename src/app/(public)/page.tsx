@@ -9,7 +9,7 @@ export default async function Home() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-16">
       <main className="text-center space-y-6">
         <Image
-          src="/logo.svg"
+          src="https://gotcha.land/HL_2.png"
           alt="Gotcha logo"
           width={64}
           height={64}
