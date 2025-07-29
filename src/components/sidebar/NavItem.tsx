@@ -12,9 +12,7 @@ export type NavItemProps = PropsWithChildren<{
 export default function NavItem({ href, children }: NavItemProps) {
   const pathname = usePathname();
   const hrefPath = typeof href === "string" ? href : href.pathname ?? "";
-  const isActive =
-    pathname === hrefPath ||
-    (hrefPath !== "/" && pathname.startsWith(`${hrefPath}/`));
+  const isActive = pathname === hrefPath;
 
   return (
     <Link
