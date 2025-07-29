@@ -15,9 +15,9 @@ export default async function Home() {
           height={192}
           className="mx-auto"
         />
-        <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome!</h1>
+        <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Welcome</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300">
-          Let's secure your application with fun and secure CAPTCHAs
+          Let's secure your application with fun and secure CAPTCHAs!
         </p>
         <div className="flex justify-center gap-4">
           {session ? (
