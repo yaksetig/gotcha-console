@@ -11,7 +11,7 @@ export default async function Topbar() {
   const appsList = await getApplications(tokenRes.accessToken!!);
 
   return (
-    <header className="px-4 h-16 flex items-center justify-between border-b border-gray-200 dark:border-gray-700/50 bg-white dark:bg-gray-900 flex-shrink-0">
+    <header className="px-4 h-16 flex items-center justify-between border-b border-gray-200 dark:border-gray-700/50 bg-white dark:bg-background flex-shrink-0">
       <div className="flex items-center text-gray-600 dark:text-gray-300">
         <MenuButton />
         <ApplicationSelector appsList={appsList} />
